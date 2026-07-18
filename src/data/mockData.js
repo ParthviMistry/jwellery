@@ -1,0 +1,85 @@
+// Mock data layer — swap these with real API calls (e.g. fetch("/api/products")) when wiring up a backend.
+
+export const categories = ["Rings", "Necklaces", "Earrings", "Bracelets", "Anklets", "Pendants"];
+
+export const products = [
+  { id: "P-1001", name: "Aurelia Solitaire Ring", category: "Rings", material: "18K Gold, Diamond", price: 48500, stock: 12, status: "Active", sku: "RG-AUR-001", image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=200&h=200&fit=crop", createdAt: "2026-01-14" },
+  { id: "P-1002", name: "Meridian Tennis Bracelet", category: "Bracelets", material: "Platinum, Diamond", price: 128000, stock: 4, status: "Active", sku: "BR-MER-002", image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=200&h=200&fit=crop", createdAt: "2026-01-20" },
+  { id: "P-1003", name: "Lumen Drop Earrings", category: "Earrings", material: "Rose Gold, Pearl", price: 21500, stock: 0, status: "Out of Stock", sku: "ER-LUM-003", image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=200&h=200&fit=crop", createdAt: "2026-02-02" },
+  { id: "P-1004", name: "Verona Choker Necklace", category: "Necklaces", material: "18K Gold, Emerald", price: 96500, stock: 7, status: "Active", sku: "NK-VER-004", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&h=200&fit=crop", createdAt: "2026-02-10" },
+  { id: "P-1005", name: "Halcyon Signet Ring", category: "Rings", material: "Sterling Silver", price: 8900, stock: 34, status: "Active", sku: "RG-HAL-005", image: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=200&h=200&fit=crop", createdAt: "2026-02-18" },
+  { id: "P-1006", name: "Seraphine Pendant", category: "Pendants", material: "18K Gold, Sapphire", price: 34200, stock: 2, status: "Low Stock", sku: "PD-SER-006", image: "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=200&h=200&fit=crop", createdAt: "2026-03-01" },
+  { id: "P-1007", name: "Cascade Anklet", category: "Anklets", material: "Rose Gold", price: 12400, stock: 18, status: "Active", sku: "AK-CAS-007", image: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=200&h=200&fit=crop", createdAt: "2026-03-09" },
+  { id: "P-1008", name: "Ondine Pearl Necklace", category: "Necklaces", material: "Freshwater Pearl, Gold", price: 45000, stock: 6, status: "Active", sku: "NK-OND-008", image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=200&h=200&fit=crop", createdAt: "2026-03-15" },
+  { id: "P-1009", name: "Elowen Hoop Earrings", category: "Earrings", material: "14K Gold", price: 15600, stock: 21, status: "Active", sku: "ER-ELO-009", image: "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=200&h=200&fit=crop", createdAt: "2026-03-22" },
+  { id: "P-1010", name: "Thalia Bangle Set", category: "Bracelets", material: "22K Gold", price: 67800, stock: 3, status: "Low Stock", sku: "BR-THA-010", image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=200&h=200&fit=crop", createdAt: "2026-04-02" },
+];
+
+export const customers = [
+  { id: "C-501", name: "Ananya Sharma", email: "ananya.sharma@example.com", phone: "+91 98200 11234", orders: 6, totalSpent: 214500, joined: "2025-06-12", location: "Mumbai, IN", tier: "Gold", avatar: "" },
+  { id: "C-502", name: "Rohan Mehta", email: "rohan.mehta@example.com", phone: "+91 99880 45210", orders: 3, totalSpent: 98700, joined: "2025-08-03", location: "Delhi, IN", tier: "Silver", avatar: "" },
+  { id: "C-503", name: "Isabella Cruz", email: "isabella.cruz@example.com", phone: "+1 415 555 0132", orders: 9, totalSpent: 356200, joined: "2025-03-27", location: "San Francisco, US", tier: "Platinum", avatar: "" },
+  { id: "C-504", name: "Kabir Anand", email: "kabir.anand@example.com", phone: "+91 90210 88765", orders: 1, totalSpent: 8900, joined: "2026-01-05", location: "Surat, IN", tier: "New", avatar: "" },
+  { id: "C-505", name: "Chloe Dubois", email: "chloe.dubois@example.com", phone: "+33 6 12 34 56 78", orders: 4, totalSpent: 132400, joined: "2025-11-19", location: "Paris, FR", tier: "Gold", avatar: "" },
+  { id: "C-506", name: "Vikram Nair", email: "vikram.nair@example.com", phone: "+91 98450 32190", orders: 2, totalSpent: 45600, joined: "2025-12-30", location: "Bengaluru, IN", tier: "Silver", avatar: "" },
+];
+
+export const orders = [
+  { id: "ORD-8231", customer: "Ananya Sharma", customerId: "C-501", date: "2026-06-28", items: [{ name: "Aurelia Solitaire Ring", qty: 1, price: 48500 }], total: 48500, status: "Delivered", payment: "Paid", shippingAddress: "204 Marine Drive, Mumbai, 400002" },
+  { id: "ORD-8232", customer: "Isabella Cruz", customerId: "C-503", date: "2026-06-29", items: [{ name: "Meridian Tennis Bracelet", qty: 1, price: 128000 }], total: 128000, status: "Processing", payment: "Paid", shippingAddress: "88 Market St, San Francisco, CA 94103" },
+  { id: "ORD-8233", customer: "Rohan Mehta", customerId: "C-502", date: "2026-06-30", items: [{ name: "Halcyon Signet Ring", qty: 2, price: 8900 }], total: 17800, status: "Shipped", payment: "Paid", shippingAddress: "12 Connaught Place, New Delhi, 110001" },
+  { id: "ORD-8234", customer: "Chloe Dubois", customerId: "C-505", date: "2026-07-01", items: [{ name: "Ondine Pearl Necklace", qty: 1, price: 45000 }], total: 45000, status: "Pending", payment: "Unpaid", shippingAddress: "14 Rue de Rivoli, Paris, 75004" },
+  { id: "ORD-8235", customer: "Kabir Anand", customerId: "C-504", date: "2026-07-01", items: [{ name: "Cascade Anklet", qty: 1, price: 12400 }], total: 12400, status: "Pending", payment: "Paid", shippingAddress: "9 Vesu Road, Surat, 395007" },
+  { id: "ORD-8236", customer: "Vikram Nair", customerId: "C-506", date: "2026-07-02", items: [{ name: "Elowen Hoop Earrings", qty: 1, price: 15600 }, { name: "Seraphine Pendant", qty: 1, price: 34200 }], total: 49800, status: "Cancelled", payment: "Refunded", shippingAddress: "22 MG Road, Bengaluru, 560001" },
+  { id: "ORD-8237", customer: "Ananya Sharma", customerId: "C-501", date: "2026-07-03", items: [{ name: "Thalia Bangle Set", qty: 1, price: 67800 }], total: 67800, status: "Delivered", payment: "Paid", shippingAddress: "204 Marine Drive, Mumbai, 400002" },
+  { id: "ORD-8238", customer: "Isabella Cruz", customerId: "C-503", date: "2026-07-04", items: [{ name: "Verona Choker Necklace", qty: 1, price: 96500 }], total: 96500, status: "Processing", payment: "Paid", shippingAddress: "88 Market St, San Francisco, CA 94103" },
+];
+
+export const coupons = [
+  { id: "CPN-01", code: "WELCOME10", type: "Percentage", value: 10, minOrder: 5000, uses: 214, limit: 1000, expiry: "2026-08-31", status: "Active" },
+  { id: "CPN-02", code: "GOLD500", type: "Flat", value: 500, minOrder: 15000, uses: 87, limit: 300, expiry: "2026-07-15", status: "Active" },
+  { id: "CPN-03", code: "FESTIVE25", type: "Percentage", value: 25, minOrder: 20000, uses: 412, limit: 500, expiry: "2026-06-30", status: "Expired" },
+  { id: "CPN-04", code: "VIP1000", type: "Flat", value: 1000, minOrder: 50000, uses: 33, limit: 100, expiry: "2026-12-31", status: "Active" },
+  { id: "CPN-05", code: "NEWUSER15", type: "Percentage", value: 15, minOrder: 0, uses: 601, limit: null, expiry: "2026-09-30", status: "Paused" },
+];
+
+export const revenueTrend = [
+  { month: "Jan", revenue: 412000, orders: 58 },
+  { month: "Feb", revenue: 468000, orders: 64 },
+  { month: "Mar", revenue: 391000, orders: 51 },
+  { month: "Apr", revenue: 552000, orders: 73 },
+  { month: "May", revenue: 601000, orders: 80 },
+  { month: "Jun", revenue: 684000, orders: 92 },
+];
+
+export const categorySales = [
+  { name: "Rings", value: 34 },
+  { name: "Necklaces", value: 26 },
+  { name: "Earrings", value: 18 },
+  { name: "Bracelets", value: 15 },
+  { name: "Other", value: 7 },
+];
+
+export const inventoryAlerts = products.filter((p) => p.stock <= 5);
+
+export const admins = [
+  { id: "A-01", name: "Priya Desai", email: "priya@lumierejewels.com", role: "Super Admin", status: "Active" },
+  { id: "A-02", name: "Arjun Kapoor", email: "arjun@lumierejewels.com", role: "Order Manager", status: "Active" },
+  { id: "A-03", name: "Meera Iyer", email: "meera@lumierejewels.com", role: "Catalog Manager", status: "Invited" },
+];
+
+export const statusStyles = {
+  Delivered: "success",
+  Shipped: "gold",
+  Processing: "secondary",
+  Pending: "warning",
+  Cancelled: "destructive",
+  Active: "success",
+  "Out of Stock": "destructive",
+  "Low Stock": "warning",
+  Expired: "destructive",
+  Paused: "secondary",
+  Paid: "success",
+  Unpaid: "warning",
+  Refunded: "secondary",
+};
