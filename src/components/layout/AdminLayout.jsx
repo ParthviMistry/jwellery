@@ -2,21 +2,12 @@ import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
-
-const titles = {
-  "/": "Dashboard",
-  "/products": "Products",
-  "/orders": "Orders",
-  "/customers": "Customers",
-  "/inventory": "Inventory",
-  "/coupons": "Coupons",
-  "/settings": "Settings",
-};
+import { pageTitles } from "@/config/navigation";
 
 function resolveTitle(pathname) {
-  if (titles[pathname]) return titles[pathname];
+  if (pageTitles[pathname]) return pageTitles[pathname];
   const base = "/" + pathname.split("/")[1];
-  return titles[base] || "Lumière Admin";
+  return pageTitles[base] || "Regnor Admin";
 }
 
 export default function AdminLayout() {
@@ -27,7 +18,7 @@ export default function AdminLayout() {
       <Sidebar />
       <div className="flex flex-col md:pl-64">
         <Topbar title={resolveTitle(location.pathname)} />
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+        <main className="flex-1 p-2 sm:p-2 lg:p-3">
           <Outlet />
         </main>
       </div>
