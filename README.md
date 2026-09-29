@@ -1,223 +1,126 @@
 # Lumiere Jewellery Admin
 
-A modern and responsive jewellery administration portal built with **React, Vite, JavaScript, Tailwind CSS, and shadcn/ui**.
+A modern, white-label admin platform for jewellery businesses built with React, Vite, Tailwind CSS, and shadcn/ui.
 
-The project provides a reusable UI foundation for managing jewellery products, categories, inventory, customers, orders, and other administrative operations.
+This project is designed as a reusable multi-client admin template. Shared screens and UI primitives stay consistent while each client can customize its branding, navigation, and business messaging without rewriting the base product.
 
 ## 🚀 Tech Stack
 
-* **React** — UI library
-* **Vite** — Development server and build tool
-* **JavaScript** — Project language
-* **Tailwind CSS** — Utility-first CSS framework
-* **shadcn/ui** — Reusable UI components
-* **Radix UI** — Accessible component primitives
-* **Nova** — shadcn/ui preset
-* **Lucide React** — Icons
-* **React Router DOM** — Application routing
-* **Recharts** — Charts and data visualization
-* **Class Variance Authority (CVA)** — Component variants
-* **clsx / tailwind-merge** — Conditional and merged Tailwind classes
+* React
+* Vite
+* JavaScript
+* Tailwind CSS
+* shadcn/ui
+* Radix UI
+* Lucide React
+* React Router DOM
+* Recharts
+* clsx / tailwind-merge
 
-## 📁 Project Structure
+## 🧠 Architecture
 
-```text
-lumiere-jewellery-admin/
-│
-├── public/
-│
-├── src/
-│   ├── assets/
-│   │
-│   ├── components/
-│   │   └── ui/
-│   │       ├── button.jsx
-│   │       ├── card.jsx
-│   │       ├── input.jsx
-│   │       ├── form.jsx
-│   │       └── ...
-│   │
-│   ├── hooks/
-│   │
-│   ├── lib/
-│   │   └── utils.js
-│   │
-│   ├── pages/
-│   │
-│   ├── layouts/
-│   │
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-│
-├── components.json
-├── jsconfig.json
-├── tailwind.config.js
-├── postcss.config.js
-├── vite.config.js
-├── package.json
-└── README.md
-```
-
-## 🎨 UI & Component System
-
-This project uses **shadcn/ui with the Radix UI component library and Nova preset**.
-
-Components are maintained directly inside the project, allowing the UI to be customized according to the application's requirements.
-
-### Current UI approach
+The app follows a layered architecture to keep it maintainable and reusable:
 
 ```text
-shadcn/ui
-     │
-     ├── Nova preset
-     │
-     ├── Radix UI primitives
-     │
-     ├── Tailwind CSS
-     │
-     └── Custom application styling
+config -> theme -> routes -> services/hooks -> page UI
 ```
 
-## 🧩 Adding shadcn Components
+Key layers:
 
-To add a new shadcn component:
+* src/config/ — metadata, navigation, client theming, onboarding data
+* src/context/ — client state and runtime theme switching
+* src/lib/theme.js — theme application logic
+* src/services/ — data access and business logic
+* src/hooks/ — view-specific state and filtering logic
+* src/pages/ — route-based screens
+* src/components/ — reusable UI and layout building blocks
 
-```bash
-npx shadcn@latest add <component-name>
-```
+## 🏷️ White-label / multi-client model
 
-For example:
+Each client has a theme definition in [src/config/clientThemes.js](src/config/clientThemes.js). These definitions include:
 
-```bash
-npx shadcn@latest add button
-```
+* brand colors and accents
+* sidebar and surface colors
+* typography settings
+* radius and shadow values
+* brand labels and display names
 
-```bash
-npx shadcn@latest add card
-```
+The app reads the selected client at runtime through [src/context/ClientThemeContext.jsx](src/context/ClientThemeContext.jsx) and applies the values to CSS variables using [src/lib/theme.js](src/lib/theme.js). This allows the same UI shell to be reused across different brands.
 
-```bash
-npx shadcn@latest add form
-```
+## 🔄 Client onboarding workflow
 
-Multiple components can be added together:
+New client onboarding should follow this flow:
 
-```bash
-npx shadcn@latest add button card input form select table dialog
-```
+1. Add a new theme profile to [src/config/clientThemes.js](src/config/clientThemes.js)
+2. Update client metadata in [src/config/app.js](src/config/app.js)
+3. Adjust any client-specific labels in [src/config/navigation.js](src/config/navigation.js)
+4. Add client-specific copy and settings in the relevant pages
+5. Validate the brand in the runtime selector and fix any token mismatches
 
-Components are generated inside:
+A reusable checklist is available in [src/config/clientOnboarding.js](src/config/clientOnboarding.js).
+
+## 📁 Project structure
 
 ```text
-src/components/ui/
+src/
+├── components/
+│   ├── layout/
+│   └── ui/
+├── config/
+│   ├── app.js
+│   ├── clientThemes.js
+│   ├── clientOnboarding.js
+│   └── navigation.js
+├── context/
+│   └── ClientThemeContext.jsx
+├── data/
+├── hooks/
+├── lib/
+│   ├── theme.js
+│   └── utils.js
+├── pages/
+├── routes/
+├── services/
+├── App.jsx
+├── index.css
+├── main.jsx
+└── something
 ```
 
-## 📦 Installation
-
-### Prerequisites
-
-Make sure the following are installed:
-
-* Node.js
-* npm
-* Git
-
-Check your versions:
+## 🧩 Adding shadcn components
 
 ```bash
-node -v
-npm -v
-git --version
+npx shadcn@latest add button card input select table dialog
 ```
 
-### Clone the Repository
-
-```bash
-git clone <repository-url>
-```
-
-Move into the project:
-
-```bash
-cd lumiere-jewellery-admin
-```
-
-### Install Dependencies
+## 📦 Install
 
 ```bash
 npm install
 ```
 
-## ▶️ Run the Project
-
-Start the development server:
+## ▶️ Run locally
 
 ```bash
 npm run dev
 ```
 
-Vite will provide a local development URL, usually:
-
-```text
-http://localhost:5173
-```
-
-## 🏗️ Production Build
-
-Create a production build:
+## 🏗️ Build
 
 ```bash
 npm run build
 ```
 
-Preview the production build locally:
+## ✅ Phase 7 summary
 
-```bash
-npm run preview
-```
+This phase covers the final cleanup and client onboarding path:
 
-## 🧭 Routing
+* clearer architecture guidance
+* easier multi-client branding workflow
+* runtime theme selection support
+* onboarding checklist for future clients
+* documentation for how to extend the project without breaking the shared UI shell
 
-The application uses **React Router DOM** for navigation.
-
-Example:
-
-```jsx
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-<BrowserRouter>
-  <Routes>
-    <Route path="/" element={<Dashboard />} />
-    <Route path="/products" element={<Products />} />
-    <Route path="/categories" element={<Categories />} />
-  </Routes>
-</BrowserRouter>
-```
-
-## 🧱 Reusable Components
-
-Reusable components should be placed in:
-
-```text
-src/components/
-```
-
-shadcn/ui components should be placed in:
-
-```text
-src/components/ui/
-```
-
-Application-specific components can be organized separately:
-
-```text
-src/components/
-├── layout/
-├── dashboard/
-├── products/
-├── customers/
-└── common/
 ```
 
 ## 🎯 Admin Portal Modules
