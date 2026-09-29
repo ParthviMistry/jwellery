@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Plus, MoreHorizontal, Mail } from "lucide-react";
+import { Plus, MoreHorizontal, Mail, CheckCircle2, Sparkles } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -17,6 +17,7 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { admins } from "@/data/mockData";
+import { clientOnboardingChecklist, getClientOnboardingStatus } from "@/config/clientOnboarding";
 
 function initials(name) {
   return name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase();
@@ -24,9 +25,43 @@ function initials(name) {
 
 export default function Settings() {
   const [notifications, setNotifications] = useState({ orders: true, lowStock: true, marketing: false, weeklyDigest: true });
+  const onboarding = getClientOnboardingStatus("default");
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-3xl space-y-6">
+      <Card>
+        <CardHeader>
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <CardTitle className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-primary" /> Client onboarding
+              </CardTitle>
+              <CardDescription>
+                {onboarding.complete}/{onboarding.total} steps complete
+              </CardDescription>
+            </div>
+            <Badge variant="secondary">White-label setup</Badge>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {clientOnboardingChecklist.map((item) => (
+            <div key={item.id} className="flex items-center justify-between gap-3 rounded-lg border border-border p-3">
+              <div>
+                <p className="text-sm font-medium">{item.title}</p>
+                <p className="text-xs text-muted-foreground">{item.description}</p>
+              </div>
+              {item.complete ? (
+                <CheckCircle2 className="h-5 w-5 text-success" />
+              ) : (
+                <span className="rounded-full bg-muted px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                  pending
+                </span>
+              )}
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+
       <Tabs defaultValue="profile">
         <TabsList>
           <TabsTrigger value="profile">Profile</TabsTrigger>
@@ -49,7 +84,7 @@ export default function Settings() {
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-1.5">
                   <Label htmlFor="fullname">Full name</Label>
-                  <Input id="fullname" defaultValue="Priya Desai" />
+                  <Input id="fullname" defaultValue="Parthvi Mistry" />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="role">Role</Label>

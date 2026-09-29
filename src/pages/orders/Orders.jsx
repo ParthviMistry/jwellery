@@ -5,8 +5,21 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 import { orders, statusStyles } from "@/data/mockData";
 import { formatCurrency, formatDate } from "@/lib/utils";
 
@@ -27,20 +40,29 @@ export default function Orders() {
   }, [query, status]);
 
   return (
-    <div className="space-y-5">
-      <p className="text-sm text-muted-foreground">{filtered.length} of {orders.length} orders</p>
-
+    <div className="space-y-4">
       <Card>
         <CardContent className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center">
           <div className="relative flex-1">
             <Search className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input placeholder="Search order ID or customer…" value={query} onChange={(e) => setQuery(e.target.value)} className="pl-8" />
+            <Input
+              placeholder="Search order ID or customer…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="pl-8"
+            />
           </div>
           <Select value={status} onValueChange={setStatus}>
-            <SelectTrigger className="sm:w-44"><SelectValue placeholder="Status" /></SelectTrigger>
+            <SelectTrigger className="sm:w-44">
+              <SelectValue placeholder="Status" />
+            </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All statuses</SelectItem>
-              {statuses.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+              {statuses.map((s) => (
+                <SelectItem key={s} value={s}>
+                  {s}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </CardContent>
@@ -63,22 +85,37 @@ export default function Orders() {
             <TableBody>
               {filtered.map((o) => (
                 <TableRow key={o.id}>
-                  <TableCell className="font-mono text-xs font-medium">{o.id}</TableCell>
+                  <TableCell className="font-mono text-xs font-medium">
+                    {o.id}
+                  </TableCell>
                   <TableCell className="text-sm">{o.customer}</TableCell>
-                  <TableCell className="text-sm text-muted-foreground">{formatDate(o.date)}</TableCell>
-                  <TableCell><Badge variant={statusStyles[o.payment]}>{o.payment}</Badge></TableCell>
-                  <TableCell><Badge variant={statusStyles[o.status]}>{o.status}</Badge></TableCell>
-                  <TableCell className="text-right font-medium tabular-nums">{formatCurrency(o.total)}</TableCell>
+                  <TableCell className="text-sm text-muted-foreground">
+                    {formatDate(o.date)}
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant={statusStyles[o.payment]}>{o.payment}</Badge>
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant={statusStyles[o.status]}>{o.status}</Badge>
+                  </TableCell>
+                  <TableCell className="text-right font-medium tabular-nums">
+                    {formatCurrency(o.total)}
+                  </TableCell>
                   <TableCell>
                     <Button variant="ghost" size="icon" asChild>
-                      <Link to={`/orders/${o.id}`}><Eye className="h-4 w-4" /></Link>
+                      <Link to={`/orders/${o.id}`}>
+                        <Eye className="h-4 w-4" />
+                      </Link>
                     </Button>
                   </TableCell>
                 </TableRow>
               ))}
               {filtered.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={7} className="py-10 text-center text-sm text-muted-foreground">
+                  <TableCell
+                    colSpan={7}
+                    className="py-10 text-center text-sm text-muted-foreground"
+                  >
                     No orders match your filters.
                   </TableCell>
                 </TableRow>
