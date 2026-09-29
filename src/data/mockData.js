@@ -63,7 +63,7 @@ export const categorySales = [
 export const inventoryAlerts = products.filter((p) => p.stock <= 5);
 
 export const admins = [
-  { id: "A-01", name: "Priya Desai", email: "priya@lumierejewels.com", role: "Super Admin", status: "Active" },
+  { id: "A-01", name: "Parthvi Mistry", email: "parthvi@lumierejewels.com", role: "Super Admin", status: "Active" },
   { id: "A-02", name: "Arjun Kapoor", email: "arjun@lumierejewels.com", role: "Order Manager", status: "Active" },
   { id: "A-03", name: "Meera Iyer", email: "meera@lumierejewels.com", role: "Catalog Manager", status: "Invited" },
 ];
