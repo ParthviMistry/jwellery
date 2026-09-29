@@ -1,0 +1,10 @@
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="420" fill="#F6F3EE"/>
+  <text x="58" y="245" fill="#0E1F36" font-size="220" font-weight="700" font-family="Georgia, 'Times New Roman', serif" letter-spacing="-12">Regnor</text>
+  <g transform="translate(758 112)">
+    <circle cx="150" cy="70" r="68" fill="#0E1F36"/>
+    <circle cx="150" cy="70" r="48" fill="#F6F3EE"/>
+    <path d="M92 140C106 164 126 176 150 176C174 176 194 164 208 140" stroke="#0E1F36" stroke-width="8" stroke-linecap="round"/>
+    <path d="M122 60C131 52 141 48 150 48C159 48 169 52 178 60" stroke="#0E1F36" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>
