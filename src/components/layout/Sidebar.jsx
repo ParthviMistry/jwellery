@@ -1,86 +1,143 @@
-import React from "react";
+import React, { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import {
-  LayoutDashboard,
-  Gem,
-  ShoppingBag,
-  Users,
-  Boxes,
-  Ticket,
-  Settings,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
+import { navigation } from "@/config/navigation";
 
-const navItems = [
-  { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
-  { to: "/products", label: "Products", icon: Gem },
-  { to: "/orders", label: "Orders", icon: ShoppingBag },
-  { to: "/customers", label: "Customers", icon: Users },
-  { to: "/inventory", label: "Inventory", icon: Boxes },
-  { to: "/coupons", label: "Coupons", icon: Ticket },
-  { to: "/settings", label: "Settings", icon: Settings },
-];
+function NavItem({ item, onNavigate, isOpen, onToggle }) {
+  if (item.children) {
+    return (
+      <div className="space-y-1">
+        <button
+          type="button"
+          onClick={() => onToggle(item.label)}
+          className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-xs font-semibold uppercase tracking-[0.14em] text-white/45 transition-colors hover:bg-white/5 hover:text-white"
+        >
+          {item.icon && <item.icon className="h-3.5 w-3.5 text-white/50" />}
+
+          <span className="flex-1">{item.label}</span>
+
+          <ChevronDown
+            className={cn(
+              "h-3.5 w-3.5 text-white/50 transition-transform duration-300",
+              isOpen && "rotate-90",
+            )}
+          />
+        </button>
+
+        <div
+          className={cn(
+            "ml-2 overflow-hidden border-l border-white/10 pl-2 transition-all duration-300 ease-out",
+            isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0",
+          )}
+        >
+          <div className="space-y-1 pt-1">
+            {item.children.map((child) => (
+              <NavLink
+                key={child.to}
+                to={child.to}
+                onClick={onNavigate}
+                className={({ isActive }) =>
+                  cn(
+                    "flex items-center rounded-md px-2.5 py-2 text-sm transition-colors",
+                    isActive
+                      ? "bg-white/10 text-white"
+                      : "text-white/60 hover:bg-white/5 hover:text-white",
+                  )
+                }
+              >
+                {child.label}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <NavLink
+      to={item.to}
+      end={item.end}
+      onClick={onNavigate}
+      className={({ isActive }) =>
+        cn(
+          "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+          isActive
+            ? "bg-white/10 text-white"
+            : "text-white/60 hover:bg-white/5 hover:text-white",
+        )
+      }
+    >
+      {({ isActive }) => (
+        <>
+          <item.icon
+            className={cn("h-4 w-4", isActive ? "text-white" : "text-white/40")}
+          />
+
+          <span>{item.label}</span>
+
+          {isActive && (
+            <span className="ml-auto h-1.5 w-1.5 rounded-full bg-gold" />
+          )}
+        </>
+      )}
+    </NavLink>
+  );
+}
 
 export function SidebarContent({ onNavigate }) {
+  const [expandedGroups, setExpandedGroups] = useState(() =>
+    Object.fromEntries(
+      navigation
+        .filter((item) => item.children)
+        .map((item) => [item.label, true]),
+    ),
+  );
+
+  const handleToggle = (label) => {
+    setExpandedGroups((prev) => ({
+      ...prev,
+      [label]: !prev[label],
+    }));
+  };
+
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex items-center gap-2.5 px-6 py-6">
-        <div className="flex h-9 w-9 items-center justify-center rounded-md bg-gold-soft">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path d="M4 9L12 3L20 9L12 21L4 9Z" stroke="hsl(36 55% 34%)" strokeWidth="1.6" strokeLinejoin="round" />
-            <path d="M4 9H20M8 9L12 21M16 9L12 21M9 3L4 9M15 3L20 9" stroke="hsl(36 55% 34%)" strokeWidth="1" strokeLinejoin="round" opacity="0.6" />
-          </svg>
-        </div>
-        <div>
-          <p className="font-display text-lg font-semibold leading-none text-white">Lumière</p>
-          <p className="text-[11px] uppercase tracking-widest text-white/40">Admin Studio</p>
+    <div className="flex h-full flex-col overflow-hidden">
+      {/* =========================
+          BRAND / LOGO HEADER
+      ========================== */}
+      <div className="flex h-20 shrink-0 items-center px-3">
+        <div className="w-full">
+          <img
+            src="/regnor-wordmark.svg"
+            alt="Regnor Jewellery"
+            className="h-9 w-auto max-w-[180px] object-contain"
+          />
         </div>
       </div>
 
-      <nav className="flex-1 space-y-0.5 px-3">
-        {navItems.map(({ to, label, icon: Icon, end }) => (
-          <NavLink
-            key={to}
-            to={to}
-            end={end}
-            onClick={onNavigate}
-            className={({ isActive }) =>
-              cn(
-                "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
-                isActive
-                  ? "bg-white/10 text-white"
-                  : "text-white/60 hover:bg-white/5 hover:text-white"
-              )
-            }
-          >
-            {({ isActive }) => (
-              <>
-                <Icon className={cn("h-4 w-4", isActive ? "text-gold" : "text-white/40")} />
-                {label}
-                {isActive && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-gold" />}
-              </>
-            )}
-          </NavLink>
+      {/* =========================
+          NAVIGATION
+      ========================== */}
+      <nav className="flex-1 space-y-2 overflow-y-auto overflow-x-hidden px-3 pb-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-white/15 hover:[&::-webkit-scrollbar-thumb]:bg-white/25">
+        {navigation.map((item) => (
+          <NavItem
+            key={item.to || item.label}
+            item={item}
+            onNavigate={onNavigate}
+            isOpen={expandedGroups[item.label] ?? true}
+            onToggle={handleToggle}
+          />
         ))}
       </nav>
-
-      <div className="mx-3 mb-3 rounded-md border border-white/10 bg-white/5 p-4">
-        <p className="text-xs font-medium text-white/70">Storefront preview</p>
-        <p className="mt-1 text-[11px] text-white/40">See what shoppers see, live.</p>
-        <a
-          href="#"
-          className="mt-3 inline-flex items-center text-xs font-medium text-gold hover:text-gold-soft"
-        >
-          View storefront &rarr;
-        </a>
-      </div>
     </div>
   );
 }
 
 export default function Sidebar() {
   return (
-    <aside className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 bg-ink">
+    <aside className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col bg-ink h-screen overflow-hidden">
       <SidebarContent />
     </aside>
   );
