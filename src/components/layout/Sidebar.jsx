@@ -91,7 +91,7 @@ export function SidebarContent({ onNavigate }) {
     Object.fromEntries(
       navigation
         .filter((item) => item.children)
-        .map((item) => [item.label, true]),
+        .map((item, index) => [item.label, index === 0]),
     ),
   );
 
@@ -126,7 +126,7 @@ export function SidebarContent({ onNavigate }) {
             key={item.to || item.label}
             item={item}
             onNavigate={onNavigate}
-            isOpen={expandedGroups[item.label] ?? true}
+            isOpen={expandedGroups[item.label] ?? false}
             onToggle={handleToggle}
           />
         ))}

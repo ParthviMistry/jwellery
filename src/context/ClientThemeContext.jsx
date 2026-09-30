@@ -8,7 +8,7 @@ import {
   resolveClientId,
 } from "@/config/clientThemes";
 
-const storageKey = "jwellery-client-theme";
+const storageKey = "regnor-client-theme";
 const ClientThemeContext = createContext(null);
 
 export function ClientThemeProvider({ children }) {
@@ -36,10 +36,14 @@ export function ClientThemeProvider({ children }) {
       themeOptions: getClientThemeOptions(),
       availableThemes: clientThemes,
     }),
-    [selectedId]
+    [selectedId],
   );
 
-  return <ClientThemeContext.Provider value={value}>{children}</ClientThemeContext.Provider>;
+  return (
+    <ClientThemeContext.Provider value={value}>
+      {children}
+    </ClientThemeContext.Provider>
+  );
 }
 
 export function useClientTheme() {

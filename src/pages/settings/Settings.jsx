@@ -1,7 +1,20 @@
 import React, { useState } from "react";
-import { Plus, MoreHorizontal, Mail, CheckCircle2, Sparkles } from "lucide-react";
+import {
+  Plus,
+  MoreHorizontal,
+  Mail,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,7 +22,14 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -17,14 +37,27 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { admins } from "@/data/mockData";
-import { clientOnboardingChecklist, getClientOnboardingStatus } from "@/config/clientOnboarding";
+import {
+  clientOnboardingChecklist,
+  getClientOnboardingStatus,
+} from "@/config/clientOnboarding";
 
 function initials(name) {
-  return name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase();
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 }
 
 export default function Settings() {
-  const [notifications, setNotifications] = useState({ orders: true, lowStock: true, marketing: false, weeklyDigest: true });
+  const [notifications, setNotifications] = useState({
+    orders: true,
+    lowStock: true,
+    marketing: false,
+    weeklyDigest: true,
+  });
   const onboarding = getClientOnboardingStatus("default");
 
   return (
@@ -45,10 +78,15 @@ export default function Settings() {
         </CardHeader>
         <CardContent className="space-y-3">
           {clientOnboardingChecklist.map((item) => (
-            <div key={item.id} className="flex items-center justify-between gap-3 rounded-lg border border-border p-3">
+            <div
+              key={item.id}
+              className="flex items-center justify-between gap-3 rounded-lg border border-border p-3"
+            >
               <div>
                 <p className="text-sm font-medium">{item.title}</p>
-                <p className="text-xs text-muted-foreground">{item.description}</p>
+                <p className="text-xs text-muted-foreground">
+                  {item.description}
+                </p>
               </div>
               {item.complete ? (
                 <CheckCircle2 className="h-5 w-5 text-success" />
@@ -74,12 +112,18 @@ export default function Settings() {
           <Card>
             <CardHeader>
               <CardTitle>Your profile</CardTitle>
-              <CardDescription>Update your personal information.</CardDescription>
+              <CardDescription>
+                Update your personal information.
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-4">
-                <Avatar className="h-14 w-14"><AvatarFallback className="text-base">PD</AvatarFallback></Avatar>
-                <Button variant="outline" size="sm">Change photo</Button>
+                <Avatar className="h-14 w-14">
+                  <AvatarFallback className="text-base">PD</AvatarFallback>
+                </Avatar>
+                <Button variant="outline" size="sm">
+                  Change photo
+                </Button>
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-1.5">
@@ -92,7 +136,11 @@ export default function Settings() {
                 </div>
                 <div className="space-y-1.5 sm:col-span-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" defaultValue="priya@lumierejewels.com" />
+                  <Input
+                    id="email"
+                    type="email"
+                    defaultValue="parthvi@gmail.com"
+                  />
                 </div>
               </div>
             </CardContent>
@@ -106,13 +154,15 @@ export default function Settings() {
           <Card>
             <CardHeader>
               <CardTitle>Store details</CardTitle>
-              <CardDescription>Shown to shoppers at checkout and in emails.</CardDescription>
+              <CardDescription>
+                Shown to shoppers at checkout and in emails.
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-1.5">
                   <Label htmlFor="storename">Store name</Label>
-                  <Input id="storename" defaultValue="Lumière Fine Jewellery" />
+                  <Input id="storename" defaultValue="Regnor Jewellery" />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="currency">Currency</Label>
@@ -120,11 +170,19 @@ export default function Settings() {
                 </div>
                 <div className="space-y-1.5 sm:col-span-2">
                   <Label htmlFor="support">Support email</Label>
-                  <Input id="support" type="email" defaultValue="support@lumierejewels.com" />
+                  <Input
+                    id="support"
+                    type="email"
+                    defaultValue="support@gmail.com"
+                  />
                 </div>
                 <div className="space-y-1.5 sm:col-span-2">
                   <Label htmlFor="address">Business address</Label>
-                  <Textarea id="address" rows={3} defaultValue="Level 4, Diamond Bourse, Surat, Gujarat 395007, India" />
+                  <Textarea
+                    id="address"
+                    rows={3}
+                    defaultValue="Level 4, Diamond Bourse, Surat, Gujarat 395007, India"
+                  />
                 </div>
               </div>
             </CardContent>
@@ -139,9 +197,13 @@ export default function Settings() {
             <CardHeader className="flex-row items-center justify-between space-y-0">
               <div>
                 <CardTitle>Admin users</CardTitle>
-                <CardDescription>People with access to this dashboard.</CardDescription>
+                <CardDescription>
+                  People with access to this dashboard.
+                </CardDescription>
               </div>
-              <Button size="sm" variant="gold"><Plus className="h-4 w-4" /> Invite</Button>
+              <Button size="sm" variant="gold">
+                <Plus className="h-4 w-4" /> Invite
+              </Button>
             </CardHeader>
             <CardContent className="p-0">
               <Table>
@@ -158,25 +220,41 @@ export default function Settings() {
                     <TableRow key={a.id}>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <Avatar className="h-8 w-8"><AvatarFallback>{initials(a.name)}</AvatarFallback></Avatar>
+                          <Avatar className="h-8 w-8">
+                            <AvatarFallback>{initials(a.name)}</AvatarFallback>
+                          </Avatar>
                           <div>
                             <p className="text-sm font-medium">{a.name}</p>
-                            <p className="text-xs text-muted-foreground">{a.email}</p>
+                            <p className="text-xs text-muted-foreground">
+                              {a.email}
+                            </p>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell className="text-sm">{a.role}</TableCell>
                       <TableCell>
-                        <Badge variant={a.status === "Active" ? "success" : "secondary"}>{a.status}</Badge>
+                        <Badge
+                          variant={
+                            a.status === "Active" ? "success" : "secondary"
+                          }
+                        >
+                          {a.status}
+                        </Badge>
                       </TableCell>
                       <TableCell>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon"><MoreHorizontal className="h-4 w-4" /></Button>
+                            <Button variant="ghost" size="icon">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuItem><Mail className="mr-2 h-4 w-4" /> Resend invite</DropdownMenuItem>
-                            <DropdownMenuItem className="text-destructive focus:text-destructive">Remove access</DropdownMenuItem>
+                            <DropdownMenuItem>
+                              <Mail className="mr-2 h-4 w-4" /> Resend invite
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="text-destructive focus:text-destructive">
+                              Remove access
+                            </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </TableCell>
@@ -192,23 +270,46 @@ export default function Settings() {
           <Card>
             <CardHeader>
               <CardTitle>Notification preferences</CardTitle>
-              <CardDescription>Choose what you want to be notified about.</CardDescription>
+              <CardDescription>
+                Choose what you want to be notified about.
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-1">
               {[
-                { key: "orders", label: "New orders", desc: "Get notified the moment a new order comes in." },
-                { key: "lowStock", label: "Low stock alerts", desc: "When a product drops to 5 units or fewer." },
-                { key: "marketing", label: "Marketing performance", desc: "Weekly summary of coupon and campaign usage." },
-                { key: "weeklyDigest", label: "Weekly digest", desc: "A Monday morning summary of store performance." },
+                {
+                  key: "orders",
+                  label: "New orders",
+                  desc: "Get notified the moment a new order comes in.",
+                },
+                {
+                  key: "lowStock",
+                  label: "Low stock alerts",
+                  desc: "When a product drops to 5 units or fewer.",
+                },
+                {
+                  key: "marketing",
+                  label: "Marketing performance",
+                  desc: "Weekly summary of coupon and campaign usage.",
+                },
+                {
+                  key: "weeklyDigest",
+                  label: "Weekly digest",
+                  desc: "A Monday morning summary of store performance.",
+                },
               ].map((item) => (
-                <div key={item.key} className="flex items-center justify-between border-b border-border py-3.5 last:border-0">
+                <div
+                  key={item.key}
+                  className="flex items-center justify-between border-b border-border py-3.5 last:border-0"
+                >
                   <div>
                     <p className="text-sm font-medium">{item.label}</p>
                     <p className="text-xs text-muted-foreground">{item.desc}</p>
                   </div>
                   <Switch
                     checked={notifications[item.key]}
-                    onCheckedChange={(v) => setNotifications((prev) => ({ ...prev, [item.key]: v }))}
+                    onCheckedChange={(v) =>
+                      setNotifications((prev) => ({ ...prev, [item.key]: v }))
+                    }
                   />
                 </div>
               ))}

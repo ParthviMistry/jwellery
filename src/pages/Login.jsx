@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("priya@lumierejewels.com");
+  const [email, setEmail] = useState("parthvi@gmail.com");
   const [password, setPassword] = useState("");
 
   function handleSubmit(e) {
@@ -47,7 +47,7 @@ export default function Login() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="border-white/10 bg-white/5 text-white placeholder:text-white/30"
-                  placeholder="you@lumierejewels.com"
+                  placeholder="you@gmail.com"
                   required
                 />
               </div>
