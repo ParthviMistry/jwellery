@@ -1,290 +1,178 @@
-# Lumiere Jewellery Admin
+# Regnor Jewellery Admin
 
-A modern, white-label admin platform for jewellery businesses built with React, Vite, Tailwind CSS, and shadcn/ui.
+A React + Vite frontend for a white-label jewellery administration platform.
 
-This project is designed as a reusable multi-client admin template. Shared screens and UI primitives stay consistent while each client can customize its branding, navigation, and business messaging without rewriting the base product.
+The repository currently uses local mock data. A production ASP.NET backend, database, authentication, and authorization are not included in this workspace.
 
-## 🚀 Tech Stack
+## Tech stack
 
-* React
-* Vite
-* JavaScript
-* Tailwind CSS
-* shadcn/ui
-* Radix UI
-* Lucide React
-* React Router DOM
-* Recharts
-* clsx / tailwind-merge
+- React 18
+- Vite
+- JavaScript
+- Tailwind CSS
+- shadcn-style UI components
+- Radix UI
+- React Router DOM
+- Lucide React
+- Recharts
 
-## 🧠 Architecture
-
-The app follows a layered architecture to keep it maintainable and reusable:
+## Project structure
 
 ```text
-config -> theme -> routes -> services/hooks -> page UI
+.
+├── AGENTS.md
+├── .agents/
+│   └── skills/
+├── .ai/
+│   ├── architecture/
+│   ├── features/
+│   ├── ui/
+│   └── workflows/
+├── docs/
+├── public/
+└── src/
+    ├── components/
+    │   ├── common/
+    │   ├── layout/
+    │   └── ui/
+    ├── config/
+    ├── context/
+    ├── data/
+    ├── hooks/
+    ├── lib/
+    ├── pages/
+    ├── routes/
+    └── services/
 ```
 
-Key layers:
+## Architecture
 
-* src/config/ — metadata, navigation, client theming, onboarding data
-* src/context/ — client state and runtime theme switching
-* src/lib/theme.js — theme application logic
-* src/services/ — data access and business logic
-* src/hooks/ — view-specific state and filtering logic
-* src/pages/ — route-based screens
-* src/components/ — reusable UI and layout building blocks
-
-## 🏷️ White-label / multi-client model
-
-Each client has a theme definition in [src/config/clientThemes.js](src/config/clientThemes.js). These definitions include:
-
-* brand colors and accents
-* sidebar and surface colors
-* typography settings
-* radius and shadow values
-* brand labels and display names
-
-The app reads the selected client at runtime through [src/context/ClientThemeContext.jsx](src/context/ClientThemeContext.jsx) and applies the values to CSS variables using [src/lib/theme.js](src/lib/theme.js). This allows the same UI shell to be reused across different brands.
-
-## 🔄 Client onboarding workflow
-
-New client onboarding should follow this flow:
-
-1. Add a new theme profile to [src/config/clientThemes.js](src/config/clientThemes.js)
-2. Update client metadata in [src/config/app.js](src/config/app.js)
-3. Adjust any client-specific labels in [src/config/navigation.js](src/config/navigation.js)
-4. Add client-specific copy and settings in the relevant pages
-5. Validate the brand in the runtime selector and fix any token mismatches
-
-A reusable checklist is available in [src/config/clientOnboarding.js](src/config/clientOnboarding.js).
-
-## 📁 Project structure
+The main frontend ownership model is:
 
 ```text
-src/
-├── components/
-│   ├── layout/
-│   └── ui/
-├── config/
-│   ├── app.js
-│   ├── clientThemes.js
-│   ├── clientOnboarding.js
-│   └── navigation.js
-├── context/
-│   └── ClientThemeContext.jsx
-├── data/
-├── hooks/
-├── lib/
-│   ├── theme.js
-│   └── utils.js
-├── pages/
-├── routes/
-├── services/
-├── App.jsx
-├── index.css
-├── main.jsx
-└── something
+config/context
+      ↓
+routes/navigation
+      ↓
+pages
+      ↓
+components/hooks/services
+      ↓
+mock data
 ```
 
-## 🧩 Adding shadcn components
+See `.ai/architecture/frontend.md` for detailed ownership rules.
 
-```bash
-npx shadcn@latest add button card input select table dialog
+## White-label themes
+
+Client presentation is configured in:
+
+```text
+src/config/clientThemes.js
 ```
 
-## 📦 Install
+Theme state is handled by:
+
+```text
+src/context/ClientThemeContext.jsx
+```
+
+Theme CSS variables are applied through:
+
+```text
+src/lib/theme.js
+```
+
+This is currently a presentation/theme mechanism. It does not provide tenant isolation, authentication, authorization, or client-specific navigation.
+
+See:
+
+```text
+.ai/architecture/multi-client.md
+docs/onboarding/client-onboarding.md
+```
+
+## AI agent instructions
+
+The repository is designed to work across multiple coding agents.
+
+Universal project rules:
+
+```text
+AGENTS.md
+```
+
+Portable task skills:
+
+```text
+.agents/skills/
+```
+
+Project knowledge:
+
+```text
+.ai/
+```
+
+Human/project documentation:
+
+```text
+docs/
+```
+
+The `.agents/skills/` location is intentionally shared rather than creating separate copies for each AI tool.
+
+## Install
 
 ```bash
 npm install
 ```
 
-## ▶️ Run locally
+## Development
 
 ```bash
 npm run dev
 ```
 
-## 🏗️ Build
+## Build
 
 ```bash
 npm run build
 ```
 
-## ✅ Phase 7 summary
+## Preview
 
-This phase covers the final cleanup and client onboarding path:
-
-* clearer architecture guidance
-* easier multi-client branding workflow
-* runtime theme selection support
-* onboarding checklist for future clients
-* documentation for how to extend the project without breaking the shared UI shell
-
+```bash
+npm run preview
 ```
 
-## 🎯 Admin Portal Modules
+There is currently no automated test or lint script.
 
-The planned administration portal can include:
+## Import alias
 
-### Dashboard
+The project uses `@` for `src`.
 
-* Sales overview
-* Revenue
-* Orders
-* Customers
-* Inventory summary
-* Sales charts
-
-### Products
-
-* Add jewellery
-* Edit jewellery
-* Delete jewellery
-* Product images
-* Product categories
-* Product pricing
-* Product details
-
-### Categories
-
-* Category management
-* Subcategories
-* Category status
-
-### Inventory
-
-* Stock management
-* Low-stock alerts
-* Stock updates
-* Inventory history
-
-### Orders
-
-* Order listing
-* Order details
-* Order status
-* Customer information
-
-### Customers
-
-* Customer listing
-* Customer details
-* Order history
-
-### Reports
-
-* Sales reports
-* Inventory reports
-* Product performance
-* Revenue charts
-
-## 🎨 Styling Guidelines
-
-Use Tailwind CSS for styling wherever possible.
-
-Example:
-
-```jsx
-<Card className="p-6">
-  <h2 className="text-lg font-semibold">
-    Total Sales
-  </h2>
-</Card>
-```
-
-Use the project's shared design tokens rather than hard-coding colors when possible:
-
-```jsx
-className="bg-background text-foreground"
-```
-
-Common tokens include:
-
-```text
-bg-background
-bg-card
-bg-primary
-bg-secondary
-text-foreground
-text-muted-foreground
-border-border
-text-destructive
-```
-
-## 🔗 Import Alias
-
-The project uses the `@` alias to reference the `src` directory.
-
-Instead of:
-
-```jsx
-import { Button } from "../../../components/ui/button";
-```
-
-Use:
-
-```jsx
+```js
 import { Button } from "@/components/ui/button";
-```
-
-Utility functions can be imported using:
-
-```jsx
 import { cn } from "@/lib/utils";
 ```
 
-## 🧪 Development Guidelines
+The alias is defined in `jsconfig.json` and `vite.config.js`.
 
-Before creating a new component:
+## Adding UI
 
-1. Check whether a shadcn/ui component already exists.
-2. Reuse existing components whenever possible.
-3. Keep reusable components inside `src/components`.
-4. Keep page-specific logic inside the relevant page/module.
-5. Avoid duplicating common UI logic.
-6. Use Tailwind design tokens instead of unnecessary custom colors.
-7. Keep components small and maintainable.
+Before creating a new UI component:
 
-## 🌿 Git Workflow
+1. Check `src/components/ui/`.
+2. Check `src/components/common/`.
+3. Search for an existing implementation.
+4. Reuse the existing shadcn-style/Radix primitives.
+5. Use semantic theme tokens.
+6. Avoid adding another UI framework.
 
-Create a feature branch before starting new work:
+## Environment variables
 
-```bash
-git checkout -b feature/product-management
-```
-
-After making changes:
-
-```bash
-git status
-git add .
-git commit -m "Add product management UI"
-```
-
-Push the branch:
-
-```bash
-git push origin feature/product-management
-```
-
-Create a Pull Request after the feature is ready for review.
-
-### Suggested Branches
-
-```text
-main
-│
-├── feature/dashboard
-├── feature/product-management
-├── feature/inventory
-├── feature/orders
-└── bugfix/...
-```
-
-## 🔐 Environment Variables
-
-Environment-specific configuration should be stored in `.env` files.
+Use Vite environment variables for environment-specific configuration.
 
 Example:
 
@@ -292,15 +180,9 @@ Example:
 VITE_API_BASE_URL=http://localhost:5000/api
 ```
 
-Access environment variables in React/Vite:
+Do not commit secrets.
 
-```js
-const API_URL = import.meta.env.VITE_API_BASE_URL;
-```
-
-Do not commit sensitive credentials or secrets to Git.
-
-Add environment files to `.gitignore`:
+Recommended local-only environment files:
 
 ```text
 .env
@@ -308,63 +190,28 @@ Add environment files to `.gitignore`:
 .env.*.local
 ```
 
-## 📌 Available Scripts
+## Git workflow
 
-| Command           | Description              |
-| ----------------- | ------------------------ |
-| `npm run dev`     | Start development server |
-| `npm run build`   | Create production build  |
-| `npm run preview` | Preview production build |
+Use focused feature/bugfix branches.
 
-## 🛠️ Troubleshooting
+Example:
 
-### PowerShell blocks `npx`
-
-If PowerShell shows:
-
-```text
-npx.ps1 cannot be loaded because running scripts is disabled
+```bash
+git checkout -b feature/product-management
+git status
+git add .
+git commit -m "Add product management UI"
+git push origin feature/product-management
 ```
 
-Run:
+Create a Pull Request when the work is ready for review.
 
-```powershell
-Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-```
+## Documentation
 
-Then restart the terminal.
-
-Alternatively, use Command Prompt.
-
-### shadcn import alias error
-
-If shadcn reports:
-
-```text
-Could not find valid path aliases or package imports for init.
-```
-
-Make sure `jsconfig.json` contains:
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
-  "include": ["src"]
-}
-```
-
-And `vite.config.js` contains the `@` alias pointing to `src`.
-
-## 📄 License
-
-This project is currently maintained as a private/internal project.
-
----
-
-**Lumiere Jewellery Admin**
-Built with React + Vite + Tailwind CSS + shadcn/ui.
+- Architecture → `.ai/architecture/`
+- UI rules → `.ai/ui/`
+- Feature scope → `.ai/features/`
+- Validation/workflows → `.ai/workflows/`
+- Client onboarding → `docs/onboarding/`
+- Deployment → `docs/deployment/`
+- Roadmap → `docs/roadmap/`
