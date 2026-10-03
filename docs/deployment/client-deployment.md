@@ -19,7 +19,7 @@ Use Vite environment variables for environment-specific frontend configuration.
 Example:
 
 ```env
-VITE_API_BASE_URL=http://localhost:5000/api
+VITE_API_BASE_URL=http://localhost:7242/api
 ```
 
 Access them with:
@@ -35,6 +35,7 @@ Do not commit secrets.
 The current codebase has presentation/theme configuration, but it does not yet implement a complete hostname-based client resolution system.
 
 Possible future deployment models:
+
 - one application with a client path
 - one application with subdomain/hostname resolution
 - separate deployments using client-specific environment configuration
