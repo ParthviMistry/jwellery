@@ -21,7 +21,7 @@ import {
   updateCountry,
 } from "@/services/countries";
 
-import { brandColumns } from "@/utils/constant";
+import { countryColumns } from "@/utils/constant";
 
 const pageSize = 8;
 
@@ -270,7 +270,7 @@ const CountryPage = () => {
       > */}
       <DataTable
         rows={visibleCountries}
-        columns={brandColumns}
+        columns={countryColumns}
         page={currentPage}
         pageSize={pageSize}
         total={filteredCountries.length}
