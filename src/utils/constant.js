@@ -15,7 +15,6 @@ export const stateColumns = [
 export const cityColumns = [
   { id: "id", name: "ID" },
   { id: "name", name: "Name" },
-  { id: "alias", name: "Alias" },
   { id: "stateName", name: "State" },
   { id: "countryName", name: "Country" },
 ];
