@@ -1,6 +1,6 @@
 import React from "react";
-import { Search, X } from "lucide-react";
-
+import { Plus, Search, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import IconButton from "@/components/common/IconButton";
 
@@ -48,34 +48,32 @@ const SearchInput = ({
   );
 };
 
+export function SearchToolbar({
+  value,
+  onChange,
+  onAdd,
+  addLabel = "Add new",
+  disabled = false,
+}) {
+  return (
+    <div className="mb-3 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div className="relative w-full md:max-w-sm">
+        <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Input
+          value={value}
+          onChange={(event) => onChange?.(event.target.value)}
+          placeholder="Search..."
+          className="pl-9"
+          disabled={disabled}
+        />
+      </div>
+
+      <Button onClick={onAdd} className="gap-2" disabled={disabled}>
+        <Plus className="h-4 w-4" />
+        {addLabel}
+      </Button>
+    </div>
+  );
+}
+
 export default SearchInput;
-// import React from "react";
-// import { Search, Plus } from "lucide-react";
-// import { Input } from "@/components/ui/input";
-// import { Button } from "@/components/ui/button";
-
-// export default function SearchToolbar({
-//   value,
-//   onChange,
-//   onAdd,
-//   addLabel = "Add New",
-// }) {
-//   return (
-//     <div className="mb-3 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-//       <div className="relative w-full md:max-w-sm">
-//         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-//         <Input
-//           value={value}
-//           onChange={(event) => onChange(event.target.value)}
-//           placeholder="Search..."
-//           className="pl-9"
-//         />
-//       </div>
-
-//       <Button onClick={onAdd} className="gap-2">
-//         <Plus className="h-4 w-4" />
-//         {addLabel}
-//       </Button>
-//     </div>
-//   );
-// }

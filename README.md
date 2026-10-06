@@ -177,10 +177,11 @@ Use Vite environment variables for environment-specific configuration.
 Example:
 
 ```env
-VITE_API_BASE_URL=http://localhost:5284
+VITE_API_BASE_URL=/api
+VITE_API_PROXY_TARGET=http://localhost:5284
 ```
 
-The Vite development server proxies requests from `/api` to this backend target. The default ASP.NET Core HTTPS launch profile listens on `https://localhost:7242`; its HTTP endpoint is `http://localhost:5284`. Change `VITE_API_BASE_URL` to the URL for the profile you are running, then restart Vite.
+The frontend API client uses `VITE_API_BASE_URL`; during local development, Vite proxies requests from `/api` to `VITE_API_PROXY_TARGET`. The backend HTTP launch profile listens on `http://localhost:5284`; the HTTPS profile listens on `https://localhost:7242`. Change the proxy target to the profile you are running, then restart Vite.
 
 Do not commit secrets.
 

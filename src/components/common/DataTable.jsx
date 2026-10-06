@@ -1,6 +1,13 @@
 import React from "react";
 import { ChevronLeft, ChevronRight, Eye, Pencil, Trash2 } from "lucide-react";
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -27,8 +34,11 @@ export default function DataTable({
                 <Checkbox aria-label="Select all rows" />
               </TableHead>
               {columns.map((column) => (
-                <TableHead key={column.key} className={column.headerClassName || ""}>
-                  {column.title}
+                <TableHead
+                  key={column.id}
+                  className={column.headerClassName || ""}
+                >
+                  {column.name}
                 </TableHead>
               ))}
               <TableHead className="text-right">Actions</TableHead>
@@ -37,7 +47,10 @@ export default function DataTable({
           <TableBody>
             {rows.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={columns.length + 2} className="py-10 text-center text-muted-foreground">
+                <TableCell
+                  colSpan={columns.length + 2}
+                  className="py-10 text-center text-muted-foreground"
+                >
                   No data available
                 </TableCell>
               </TableRow>
@@ -48,24 +61,42 @@ export default function DataTable({
                     <Checkbox aria-label={`Select row ${row.id}`} />
                   </TableCell>
                   {columns.map((column) => (
-                    <TableCell key={`${row.id}-${column.key}`} className={column.cellClassName || ""}>
-                      {column.render ? column.render(row) : row[column.key]}
+                    <TableCell
+                      key={`${row.id}-${column.id}`}
+                      className={column.cellClassName || ""}
+                    >
+                      {column.render ? column.render(row) : row[column.id]}
                     </TableCell>
                   ))}
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
                       {onView && (
-                        <Button variant="ghost" size="icon-sm" onClick={() => onView(row)} aria-label="View row">
+                        <Button
+                          variant="ghost"
+                          size="icon-sm"
+                          onClick={() => onView(row)}
+                          aria-label="View row"
+                        >
                           <Eye className="h-3.5 w-3.5" />
                         </Button>
                       )}
                       {onEdit && (
-                        <Button variant="ghost" size="icon-sm" onClick={() => onEdit(row)} aria-label="Edit row">
+                        <Button
+                          variant="ghost"
+                          size="icon-sm"
+                          onClick={() => onEdit(row)}
+                          aria-label="Edit row"
+                        >
                           <Pencil className="h-3.5 w-3.5" />
                         </Button>
                       )}
                       {onDelete && (
-                        <Button variant="ghost" size="icon-sm" onClick={() => onDelete(row)} aria-label="Delete row">
+                        <Button
+                          variant="ghost"
+                          size="icon-sm"
+                          onClick={() => onDelete(row)}
+                          aria-label="Delete row"
+                        >
                           <Trash2 className="h-3.5 w-3.5" />
                         </Button>
                       )}
@@ -83,11 +114,21 @@ export default function DataTable({
           Page {page} of {totalPages}
         </p>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" disabled={page <= 1} onClick={() => onPageChange?.(page - 1)}>
+          <Button
+            variant="outline"
+            size="sm"
+            disabled={page <= 1}
+            onClick={() => onPageChange?.(page - 1)}
+          >
             <ChevronLeft className="h-4 w-4" />
             Prev
           </Button>
-          <Button variant="outline" size="sm" disabled={page >= totalPages} onClick={() => onPageChange?.(page + 1)}>
+          <Button
+            variant="outline"
+            size="sm"
+            disabled={page >= totalPages}
+            onClick={() => onPageChange?.(page + 1)}
+          >
             Next
             <ChevronRight className="h-4 w-4" />
           </Button>
