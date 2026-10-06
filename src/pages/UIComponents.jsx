@@ -80,7 +80,6 @@ import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 
 import IconButton from "@/components/common/IconButton";
-import SearchInput from "@/components/common/SearchToolbar";
 import AutocompleteDropdown from "@/components/common/AutocompleteDropdown";
 import FilterChip from "@/components/common/FilterChip";
 import AccessToggle from "@/components/common/AccessToggle";
@@ -342,10 +341,10 @@ const ComponentPage = () => {
                 </Demo>
 
                 <Demo
-                  title="SearchInput"
-                  description="Controlled search input with clear action."
+                  title="Search field"
+                  description="Controlled search field with clear action."
                 >
-                  <SearchInput
+                  <SearchToolbar
                     value={search}
                     onChange={setSearch}
                     placeholder="Search products..."
@@ -894,19 +893,13 @@ const ComponentPage = () => {
                   title="Search + Table"
                   description="Example master-screen data table."
                 >
-                  <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <SearchInput
-                      value={search}
-                      onChange={setSearch}
-                      placeholder="Search product..."
-                      className="w-full sm:max-w-sm"
-                    />
-
-                    <Button>
-                      <Plus className="mr-2 h-4 w-4" />
-                      Add Product
-                    </Button>
-                  </div>
+                  <SearchToolbar
+                    value={search}
+                    onChange={setSearch}
+                    onAdd={() => toast.info("Add product clicked")}
+                    addLabel="Add product"
+                    placeholder="Search product..."
+                  />
 
                   <div className="overflow-hidden rounded-lg border">
                     <Table>
@@ -1028,8 +1021,10 @@ const ComponentPage = () => {
 
                 <Demo title="SearchToolbar">
                   <SearchToolbar
-                    searchValue={search}
-                    onSearchChange={setSearch}
+                    value={search}
+                    onChange={setSearch}
+                    onAdd={() => toast.info("Add action clicked")}
+                    addLabel="Add stone"
                     placeholder="Search stone..."
                   />
                 </Demo>
@@ -1064,7 +1059,7 @@ const ComponentPage = () => {
 
                     <CardContent>
                       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                        <SearchInput
+                        <SearchToolbar
                           value=""
                           onChange={() => {}}
                           placeholder="Search category..."

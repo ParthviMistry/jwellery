@@ -10,7 +10,7 @@ import CommonDialog from "@/components/common/CommonDialog";
 import DataTable from "@/components/common/DataTable";
 import DeleteDialog from "@/components/common/DeleteDialog";
 import PageHeader from "@/components/common/PageHeader";
-import { SearchToolbar } from "@/components/common/SearchToolbar";
+import SearchToolbar from "@/components/common/SearchToolbar";
 import { LoaderArea, useLoader } from "@/hooks/use-loader";
 import { useToast } from "@/hooks/use-toast";
 
