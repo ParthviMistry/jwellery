@@ -5,7 +5,7 @@ const countriesUrl = "/Country";
 
 export const getCountries = async () => {
   try {
-    const response = await apiClient.get(countriesUrl);
+    const response = await apiClient.get(`${countriesUrl}/GetAllCountries`);
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error fetching countries:", error);
@@ -13,9 +13,24 @@ export const getCountries = async () => {
   }
 };
 
+export const getCountryById = async (id) => {
+  try {
+    const response = await apiClient.get(
+      `${countriesUrl}/GetCountryById/${id}`,
+    );
+    return checkApiResponse(response);
+  } catch (error) {
+    console.error("Error fetching country by ID:", error);
+    return checkApiResponse(error.data);
+  }
+};
+
 export const createCountry = async (country) => {
   try {
-    const response = await apiClient.post(countriesUrl, country);
+    const response = await apiClient.post(
+      `${countriesUrl}/AddCountry`,
+      country,
+    );
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error creating country:", error);
@@ -25,7 +40,10 @@ export const createCountry = async (country) => {
 
 export const updateCountry = async (id, country) => {
   try {
-    const response = await apiClient.put(`${countriesUrl}/${id}`, country);
+    const response = await apiClient.put(
+      `${countriesUrl}/UpdateCountry/${id}`,
+      country,
+    );
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error updating country:", error);
@@ -35,7 +53,9 @@ export const updateCountry = async (id, country) => {
 
 export const deleteCountry = async (id) => {
   try {
-    const response = await apiClient.delete(`${countriesUrl}/${id}`);
+    const response = await apiClient.delete(
+      `${countriesUrl}/DeleteCountry/${id}`,
+    );
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error deleting country:", error);
