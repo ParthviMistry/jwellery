@@ -1,3 +1,6 @@
+import React from "react";
+import StatusBadge from "@/components/common/StatusBadge";
+
 export const countryColumns = [
   { id: "id", name: "ID" },
   { id: "name", name: "Name" },
@@ -17,4 +20,25 @@ export const cityColumns = [
   { id: "name", name: "Name" },
   { id: "stateName", name: "State" },
   { id: "countryName", name: "Country" },
+];
+
+export const adminUserColumns = [
+  { id: "id", name: "ID" },
+  { id: "name", name: "Name" },
+  { id: "email", name: "Email" },
+  { id: "userType", name: "User Type" },
+  { id: "phoneNo", name: "Phone" },
+  {
+    id: "isActive",
+    name: "Status",
+    render: (user) => React.createElement(StatusBadge, { isActive: user.isActive }),
+  },
+  {
+    id: "createdAt",
+    name: "Created Date",
+    render: (user) =>
+      user.createdAt
+        ? new Date(user.createdAt).toLocaleDateString("en-IN")
+        : "—",
+  },
 ];
