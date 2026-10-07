@@ -1,8 +1,17 @@
 export const checkApiResponse = (response) => {
-  const result = response?.data;
-  if (!result?.success) {
-    console.error("API request failed:", result.message || "Unknown error");
-    return result.message || "The API request failed.";
+  const apiResponse = response?.response?.data ?? response?.data ?? response;
+
+  if (apiResponse?.success === false) {
+    throw new Error(apiResponse.message || "The API request failed.");
   }
-  return result.data;
+
+  if (apiResponse?.success === true) {
+    return apiResponse.data;
+  }
+
+  if (response instanceof Error) {
+    throw response;
+  }
+
+  throw new Error("The API returned an invalid response.");
 };

@@ -9,7 +9,7 @@ export const getStates = async () => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error fetching states:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -19,7 +19,7 @@ export const getStateById = async (id) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error fetching state by ID:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -29,7 +29,7 @@ export const createState = async (state) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error creating state:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -42,7 +42,7 @@ export const updateState = async (id, state) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error updating state:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -52,6 +52,6 @@ export const deleteState = async (id) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error deleting state:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };

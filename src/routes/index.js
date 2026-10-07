@@ -12,6 +12,7 @@ import CustomerDetail from "@/pages/customers/CustomerDetail";
 import Inventory from "@/pages/inventory/Inventory";
 import Coupons from "@/pages/coupons/Coupons";
 import Settings from "@/pages/settings/Settings";
+import FinancialYearPage from "@/pages/settings/FinancialYearPage";
 import CategoryPage from "@/pages/masters/CategoryPage";
 import SubCategoryPage from "@/pages/masters/SubCategoryPage";
 import BrandPage from "@/pages/masters/BrandPage";
@@ -56,6 +57,10 @@ export const appRoutes = [
       { path: "inventory", element: createElement(Inventory) },
       { path: "coupons", element: createElement(Coupons) },
       { path: "settings", element: createElement(Settings) },
+      {
+        path: "settings/financial-year",
+        element: createElement(FinancialYearPage),
+      },
       // {
       //   path: "settings/ui-components",
       //   element: createElement(UIComponentsShowcase),

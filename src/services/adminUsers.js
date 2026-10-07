@@ -9,7 +9,7 @@ export const getAdminUsers = async () => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error fetching admin users:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -21,7 +21,7 @@ export const getAdminUserById = async (id) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error fetching admin user by ID:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -34,7 +34,7 @@ export const createAdminUser = async (adminUser) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error creating admin user:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -47,7 +47,7 @@ export const updateAdminUser = async (id, adminUser) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error updating admin user:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -59,6 +59,6 @@ export const deleteAdminUser = async (id) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error deleting admin user:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };

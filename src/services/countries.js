@@ -9,7 +9,7 @@ export const getCountries = async () => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error fetching countries:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -21,7 +21,7 @@ export const getCountryById = async (id) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error fetching country by ID:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -34,7 +34,7 @@ export const createCountry = async (country) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error creating country:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -47,7 +47,7 @@ export const updateCountry = async (id, country) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error updating country:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -59,6 +59,6 @@ export const deleteCountry = async (id) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error deleting country:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };

@@ -1,5 +1,12 @@
 import React from "react";
-import { ChevronLeft, ChevronRight, Eye, Pencil, Trash2 } from "lucide-react";
+import {
+  CalendarCheck,
+  ChevronLeft,
+  ChevronRight,
+  Eye,
+  Pencil,
+  Trash2,
+} from "lucide-react";
 import {
   Table,
   TableHeader,
@@ -17,6 +24,8 @@ export default function DataTable({
   onView,
   onEdit,
   onDelete,
+  onActivate,
+  activateLabel = "Activate",
   page = 1,
   pageSize = 10,
   total = 0,
@@ -70,6 +79,17 @@ export default function DataTable({
                   ))}
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
+                      {onActivate && !row.isActive && (
+                        <Button
+                          variant="ghost"
+                          size="icon-sm"
+                          onClick={() => onActivate(row)}
+                          aria-label={`${activateLabel} ${row.id}`}
+                          title={activateLabel}
+                        >
+                          <CalendarCheck className="h-3.5 w-3.5" />
+                        </Button>
+                      )}
                       {onView && (
                         <Button
                           variant="ghost"

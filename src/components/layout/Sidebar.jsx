@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { navigation } from "@/config/navigation";
 
@@ -36,6 +36,7 @@ function NavItem({ item, onNavigate, isOpen, onToggle }) {
               <NavLink
                 key={child.to}
                 to={child.to}
+                end
                 onClick={onNavigate}
                 className={({ isActive }) =>
                   cn(
@@ -87,6 +88,7 @@ function NavItem({ item, onNavigate, isOpen, onToggle }) {
 }
 
 export function SidebarContent({ onNavigate }) {
+  const { pathname } = useLocation();
   const [expandedGroups, setExpandedGroups] = useState(() =>
     Object.fromEntries(
       navigation
@@ -94,6 +96,18 @@ export function SidebarContent({ onNavigate }) {
         .map((item, index) => [item.label, index === 0]),
     ),
   );
+
+  useEffect(() => {
+    const activeGroup = navigation.find((item) =>
+      item.children?.some((child) => child.to === pathname),
+    );
+    if (activeGroup) {
+      setExpandedGroups((previous) => ({
+        ...previous,
+        [activeGroup.label]: true,
+      }));
+    }
+  }, [pathname]);
 
   const handleToggle = (label) => {
     setExpandedGroups((prev) => ({

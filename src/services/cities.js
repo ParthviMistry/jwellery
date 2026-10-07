@@ -9,7 +9,7 @@ export const getCities = async () => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error fetching cities:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -21,7 +21,7 @@ export const getCitiesByStateId = async (stateId) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error fetching cities by state ID:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -31,7 +31,7 @@ export const getCityById = async (id) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error fetching city by ID:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -41,7 +41,7 @@ export const createCity = async (city) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error creating city:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -51,7 +51,7 @@ export const updateCity = async (id, city) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error updating city:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };
 
@@ -61,6 +61,6 @@ export const deleteCity = async (id) => {
     return checkApiResponse(response);
   } catch (error) {
     console.error("Error deleting city:", error);
-    return checkApiResponse(error.data);
+    return checkApiResponse(error);
   }
 };

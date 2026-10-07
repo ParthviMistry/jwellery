@@ -32,8 +32,7 @@ attachTokenInterceptor(apiClient);
 
 apiClient.interceptors.response.use(
   (response) => response,
-  (error) =>
-    Promise.reject(new Error(error.response?.data?.message || error.message)),
+  (error) => Promise.reject(error),
 );
 
 export default apiClient;

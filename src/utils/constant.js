@@ -22,6 +22,33 @@ export const cityColumns = [
   { id: "countryName", name: "Country" },
 ];
 
+export const financialYearColumns = [
+  { id: "id", name: "ID" },
+  { id: "name", name: "Financial Year" },
+  {
+    id: "startDate",
+    name: "Start Date",
+    render: (financialYear) =>
+      financialYear.startDate
+        ? new Date(financialYear.startDate).toLocaleDateString("en-IN")
+        : "—",
+  },
+  {
+    id: "endDate",
+    name: "End Date",
+    render: (financialYear) =>
+      financialYear.endDate
+        ? new Date(financialYear.endDate).toLocaleDateString("en-IN")
+        : "—",
+  },
+  {
+    id: "isActive",
+    name: "Status",
+    render: (financialYear) =>
+      React.createElement(StatusBadge, { isActive: financialYear.isActive }),
+  },
+];
+
 export const adminUserColumns = [
   { id: "id", name: "ID" },
   { id: "name", name: "Name" },
