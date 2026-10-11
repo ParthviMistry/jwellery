@@ -22,6 +22,20 @@ export const cityColumns = [
   { id: "countryName", name: "Country" },
 ];
 
+export const shapeColumns = [
+  { id: "id", name: "ID" },
+  { id: "name", name: "Name" },
+  { id: "imgPath", name: "Image Path" },
+  {
+    id: "createdAt",
+    name: "Created Date",
+    render: (shape) =>
+      shape.createdAt
+        ? new Date(shape.createdAt).toLocaleDateString("en-IN")
+        : "—",
+  },
+];
+
 export const financialYearColumns = [
   { id: "id", name: "ID" },
   { id: "name", name: "Financial Year" },
