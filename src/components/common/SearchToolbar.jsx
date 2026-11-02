@@ -13,6 +13,7 @@ const SearchToolbar = ({
   disabled = false,
   className = "",
   onClear,
+  isAllowedToAdd = true,
 }) => {
   const handleChange = (event) => {
     onChange?.(event.target.value);
@@ -57,10 +58,12 @@ const SearchToolbar = ({
   return (
     <div className="mb-3 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
       {searchField}
-      <Button onClick={onAdd} className="gap-2" disabled={disabled}>
-        <Plus className="h-4 w-4" />
-        {addLabel}
-      </Button>
+      {isAllowedToAdd && (
+        <Button onClick={onAdd} className="gap-2" disabled={disabled}>
+          <Plus className="h-4 w-4" />
+          {addLabel}
+        </Button>
+      )}
     </div>
   );
 };

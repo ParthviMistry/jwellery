@@ -84,6 +84,7 @@ export const navigation = [
     children: [
       { to: "/settings", label: "Settings" },
       { to: "/settings/financial-year", label: "Financial Year" },
+      { to: "/settings/media", label: "Media" },
       { to: "/settings/ui-components", label: "UI Components" },
     ],
   },
@@ -96,6 +97,7 @@ export const pageTitles = {
   "/inventory": "Inventory",
   "/settings": "Setting",
   "/settings/financial-year": "Financial Year",
+  "/settings/media": "Media",
   "/settings/ui-components": "UI Components",
   "/customers": "Customers",
   "/products": "Products",

@@ -13,6 +13,7 @@ import Inventory from "@/pages/inventory/Inventory";
 import Coupons from "@/pages/coupons/Coupons";
 import Settings from "@/pages/settings/Settings";
 import FinancialYearPage from "@/pages/settings/FinancialYearPage";
+import MediaPage from "@/pages/settings/MediaPage";
 import CategoryPage from "@/pages/masters/CategoryPage";
 import SubCategoryPage from "@/pages/masters/SubCategoryPage";
 import BrandPage from "@/pages/masters/BrandPage";
@@ -61,6 +62,7 @@ export const appRoutes = [
         path: "settings/financial-year",
         element: createElement(FinancialYearPage),
       },
+      { path: "settings/media", element: createElement(MediaPage) },
       // {
       //   path: "settings/ui-components",
       //   element: createElement(UIComponentsShowcase),
@@ -78,6 +80,14 @@ export const appRoutes = [
       },
       { path: "masters/product-type", element: createElement(ProductTypePage) },
       { path: "stone/stone-master", element: createElement(StonePage) },
+      {
+        path: "stone/stone-master/add-stone",
+        element: createElement(StonePage),
+      },
+      {
+        path: "stone/stone-master/edit-stone/:id",
+        element: createElement(StonePage),
+      },
       { path: "stone/shape-master", element: createElement(ShapePage) },
       { path: "metal/metal-type", element: createElement(MetalTypePage) },
       { path: "metal/metal-color", element: createElement(MetalColorPage) },
