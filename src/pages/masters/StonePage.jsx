@@ -30,13 +30,13 @@ import {
   updateStone,
 } from "@/services/stones";
 import {
+  emptyStoneForm,
   stoneColumns,
   stoneDecimalFields,
   stoneEnumOptions,
   stoneNonNegativeDecimalFields,
   stonePageSize,
   stoneTextFields,
-  stoneToForm,
 } from "@/utils/constant";
 
 const splitLines = (value) =>

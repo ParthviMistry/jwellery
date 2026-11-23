@@ -1,32 +1,14 @@
 import React from "react";
-import MasterPage from "@/components/common/MasterPage";
-import { subcategories } from "@/data/mock/subcategories";
+import CatalogMasterPage from "@/components/common/CatalogMasterPage";
 
-const columns = [
-  { key: "id", title: "ID" },
-  { key: "categoryId", title: "Category ID" },
-  { key: "name", title: "Name" },
-  { key: "code", title: "Code" },
-  { key: "description", title: "Description" },
-];
-
-const formFields = [
-  { key: "categoryId", label: "Category ID", required: true, placeholder: "e.g. CAT-001" },
-  { key: "name", label: "Name", required: true, placeholder: "e.g. Solitaire" },
-  { key: "code", label: "Code", required: true, placeholder: "e.g. SOL" },
-  { key: "description", label: "Description", type: "textarea", fullWidth: true, placeholder: "Enter description" },
+const fields = [
+  { key: "categoryId", label: "Category", required: true, list: false },
+  { key: "categoryName", label: "Category", form: false },
+  { key: "name", label: "Name", required: true, maxLength: 100 },
+  { key: "description", label: "Description", fullWidth: true },
+  { key: "image", label: "Image URL", maxLength: 2000 },
 ];
 
 export default function SubCategoryPage() {
-  return (
-    <MasterPage
-      title="SubCategory"
-      subtitle="Manage subcategory groupings for product catalog structure."
-      resourceLabel="subcategory"
-      initialData={subcategories}
-      columns={columns}
-      formFields={formFields}
-      pageSize={8}
-    />
-  );
+  return <CatalogMasterPage resource="subcategories" title="Subcategory" subtitle="Manage subcategories and their parent categories." fields={fields} />;
 }

@@ -99,7 +99,7 @@ export function SidebarContent({ onNavigate }) {
 
   useEffect(() => {
     const activeGroup = navigation.find((item) =>
-      item.children?.some((child) => child.to === pathname),
+      item.children?.some((child) => pathname === child.to || pathname.startsWith(`${child.to}/`)),
     );
     if (activeGroup) {
       setExpandedGroups((previous) => ({

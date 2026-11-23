@@ -1,32 +1,13 @@
 import React from "react";
-import MasterPage from "@/components/common/MasterPage";
-import { brands } from "@/data/mock/brands";
+import CatalogMasterPage from "@/components/common/CatalogMasterPage";
 
-const columns = [
-  { key: "id", title: "ID" },
-  { key: "name", title: "Name" },
-  { key: "code", title: "Code" },
-  { key: "logo", title: "Logo" },
-  { key: "description", title: "Description" },
-];
-
-const formFields = [
-  { key: "name", label: "Name", required: true, placeholder: "e.g. Regnor Signature" },
-  { key: "code", label: "Code", required: true, placeholder: "e.g. RGS" },
-  { key: "logo", label: "Logo URL", placeholder: "https://example.com/logo.png" },
-  { key: "description", label: "Description", type: "textarea", fullWidth: true, placeholder: "Enter brand description" },
+const fields = [
+  { key: "name", label: "Name", required: true, maxLength: 150 },
+  { key: "description", label: "Description", fullWidth: true },
+  { key: "logo", label: "Logo URL", maxLength: 2000 },
+  { key: "website", label: "Website", maxLength: 500 },
 ];
 
 export default function BrandPage() {
-  return (
-    <MasterPage
-      title="Brand"
-      subtitle="Manage brand identities and catalogue labels."
-      resourceLabel="brand"
-      initialData={brands}
-      columns={columns}
-      formFields={formFields}
-      pageSize={8}
-    />
-  );
+  return <CatalogMasterPage resource="brands" title="Brand" subtitle="Manage brand identities and catalogue labels." fields={fields} />;
 }

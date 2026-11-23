@@ -15,7 +15,18 @@ import {
 
 export const navigation = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
-  { to: "/products", label: "Products", icon: Gem },
+  {
+    label: "Products",
+    icon: Gem,
+    children: [
+      { to: "/products", label: "All Products" },
+      { to: "/masters/category", label: "Categories" },
+      { to: "/masters/subcategory", label: "Subcategories" },
+      { to: "/masters/product-type", label: "Product Type" },
+      { to: "/masters/product-style", label: "Product Style" },
+      { to: "/masters/brand", label: "Brand" },
+    ],
+  },
   {
     label: "Transaction",
     icon: ReceiptText,
@@ -31,17 +42,6 @@ export const navigation = [
   },
   { to: "/orders", label: "Orders", icon: ShoppingBag },
   { to: "/reports", label: "Reports", icon: BarChart3 },
-  {
-    label: "Product Masters",
-    icon: Gem,
-    children: [
-      { to: "/masters/category", label: "Category" },
-      { to: "/masters/subcategory", label: "SubCategory" },
-      { to: "/masters/brand", label: "Brand" },
-      { to: "/masters/product-style", label: "Product Style" },
-      { to: "/masters/product-type", label: "Product Type" },
-    ],
-  },
   {
     label: "Stone",
     icon: Sparkles,
@@ -101,6 +101,11 @@ export const pageTitles = {
   "/settings/ui-components": "UI Components",
   "/customers": "Customers",
   "/products": "Products",
+  "/masters/category": "Categories",
+  "/masters/subcategory": "Subcategories",
+  "/masters/brand": "Brands",
+  "/masters/product-style": "Product Style",
+  "/masters/product-type": "Product Type",
   "/transactions": "Transactions",
   "/masters": "Masters",
   "/stone": "Stone",
